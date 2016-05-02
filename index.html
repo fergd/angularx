@@ -1,13 +1,21 @@
 <!DOCTYPE html>
 <html ng-app="resourcesSite">
-
+<!-- TODO:
+* Get NPM to install!
+* Clean up forms
+* Polish
+* Write notes
+* Go to bed 
+-->
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Angular Experiment</title>
-    <link rel="stylesheet" href="styles/css/main.css">
+<!-- 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+ -->    <link rel="stylesheet" href="styles/css/main.css">
     <link href='https://fonts.googleapis.com/css?family=Raleway:300' rel='stylesheet' type='text/css'>
+
 </head>
 
 <body ng-app="resourcesSite">
@@ -27,117 +35,78 @@
             </nav>
         </div>
     </header>
-    <div class="page-content">
+    <div class="page-content" ng-controller="ResourceController">
         <div class="wrapper">
             <div role="content">
-
-            <form ng-controller="addController" ng-submit="addResource()">
-				<input ng-model="titleInput" type="text" id="title" placeholder="Resource title">
-				<input type="submit" value="submit">
-            </form>
-                <!-- <article ng-controller="MainController">
-        
-        <form>
-            <fieldset>
-                <legend>Title &amp; Location</legend>
-                <label for="title">Resource title</label>
-                <input type="text" id="title" placeholder="Resource title">
-                <label for="source">URL</label>
-                <input type="text" id="source" placeholder="URL">
-            </fieldset>
-            <fieldset>
-                <legend>Category</legend>
-                <ul>
-                    <li>
-                        <label for="web">Web</label>
-                        <input type="radio" id="web">
-                    </li>
-                    <li>
-                        <label for="Books">Books</label>
-                        <input type="radio" id="Books">
-                    </li>
-                    <li>
-                        <label for="Podcast">Podcast</label>
-                        <input type="radio" id="Podcast">
-                    </li>
-                    <li>
-                        <label for="Notes">Notes</label>
-                        <input type="radio" id="Notes">
-                    </li>
-                </ul>
-            </fieldset>
-            <fieldset>
-                <legend>Tags</legend>
-                <label for="tags"></label>
-                <input type="text" id="tags">
-            </fieldset>
-            <div>
-                <button type="submit" value="submit">Add Resource</button>
-            </div>
-        </form>
-    </article> -->
-                <article>
-                    <header class="is-hidden">
-                        <h1>Resources Status &amp; Tools</h1>
-                    </header>
-                    <div class="stats-control">
-                        <div class="status">
-                            <h2><span>32</span><br>resources</h2>
-                        </div>
-                        <div class="buttons-group">
-                            <button type="submit">Add New
-                                <i class="icon-add">
-                		<svg xmlns="http://www.w3.org/2000/svg">
-						    <path d="M0 0h24v24H0z" fill="none"/>
-						    <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm5 11h-4v4h-2v-4H7v-2h4V7h2v4h4v2z"/>
-						</svg>	
-                	</i>
-                            </button>
-                            <button>Manage Resources
-                                <i class="icon-edit">
-                		<svg xmlns="http://www.w3.org/2000/svg">
-						    <path d="M3 17.25V21h3.75L17.81 9.94l-3.75-3.75L3 17.25zM20.71 7.04c.39-.39.39-1.02 0-1.41l-2.34-2.34c-.39-.39-1.02-.39-1.41 0l-1.83 1.83 3.75 3.75 1.83-1.83z"/>
-						    <path d="M0 0h24v24H0z" fill="none"/>
-						</svg>
-                	</i>
-                            </button>
-                        </div>
+                <form ng-submit="addResource()" ng-show="showForm">
+                    <fieldset>
+                        <legend>New Resource</legend>
+                        <label for="title">Resource title</label>
+                        <input ng-model="titleInput" type="text" id="title" placeholder="Resource title">
+                        <!-- TODO: make a select box to preserve categories -->
+                        <label for="type">Resource type</label>
+                        <input ng-model="typeInput" type="text" id="type" placeholder="Resource type">
+                        <label for="source">URL</label>
+                        <input ng-model="urlInput" type="text" id="source" placeholder="URL">
+                    </fieldset>
+                    <div>
+                        <button type="submit" ng-click="add(); showForm=false">Add</button>
                     </div>
-                    <ul class="not-style-type category-tabs">
-                        <li class="is-website">Web</li>
-                        <li class="is-podcast">Podcast</li>
-                        <li class="is-book">Books</li>
-                        <li class="is-notes">Notes</li>
-                    </ul>
-                    <section class="resources-list">
-                        <h2>Your Resources</h2>
+				</form>
 
-                        <ul class="no-style-type" ng-controller="ResourceController as resource">
+                    <article>
+                        <header class="is-hidden">
+                            <h1>Resources Status &amp; Tools</h1>
+                        </header>
+                        <div class="stats-control">
+                            <div class="status">
+                                <h2><span>{{ items.length }}</span><br>resources</h2>
+                            </div>
+                            <div class="buttons-group">
+                                <button type="submit" ng-click="showForm=true">Add New
+                                    <i class="icon-add"><svg xmlns="http://www.w3.org/2000/svg"><path d="M0 0h24v24H0z" fill="none"/><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm5 11h-4v4h-2v-4H7v-2h4V7h2v4h4v2z"/></svg></i>
+                                </button>
+                                <button>Manage Resources
+                                    <i class="icon-edit"><svg xmlns="http://www.w3.org/2000/svg"><path d="M3 17.25V21h3.75L17.81 9.94l-3.75-3.75L3 17.25zM20.71 7.04c.39-.39.39-1.02 0-1.41l-2.34-2.34c-.39-.39-1.02-.39-1.41 0l-1.83 1.83 3.75 3.75 1.83-1.83z"/><path d="M0 0h24v24H0z" fill="none"/></svg></i>
+                                </button>
+                            </div>
+                        </div>
+                        <ul class="not-style-type category-tabs">
+                            <li class="is-website" ng-model="resourceType">Web</li>
+                            <li class="is-podcast" ng-model="resourceType">Podcast</li>
+                            <li class="is-book" ng-model="resourceType">Books</li>
+                            <!-- Did not have a chance to address notes feature -->
+                            <li class="is-notes" ng-model="resourceType">Notes</li>
+                        </ul>
+                        <section class="resources-list">
+                            <h2>Your Resources</h2>
+                            <ul class="no-style-type" >
 
-                            <li class="resource-item-wrapper item-has-animation" ng-repeat="lineItem in resource.item">
-                                <div class="re-category is-podcast">
-                                	<span class="is-hidden">Book</span>
-                                </div>
-                                <div class="re-middle">
-                                    <div class="re-title is-ellipsis">
-                                        <span>{{lineItem.name}}</span>
+
+
+
+                                <li class="resource-item-wrapper item-has-animation" ng-repeat="item in items">
+                                    <div class="re-category is-podcast" ng-click="remove($index)">
+                                    <button ng-click="remove($index)">Remove</button>
+                                        <span class="is-hidden">Book</span>
                                     </div>
-                                    <div class="re-info">
-                                        <span>{{lineItem.type}}</span>
-                                        <span>dated</span>
+                                    <div class="re-middle">
+                                        <div class="re-title is-ellipsis">
+                                            <span>{{item.name}}</span>
+                                        </div>
+                                        <div class="re-info"><span>A {{item.type}}</span> <span>added {{item.date | date:'shortDate'}}</span>
+                                        </div>
                                     </div>
-                                </div>
-                                <a href="#" rel="external" class="re-link hidden-text">link
+                                    <a ng-href="{{item.url}}" target="_blank" rel="external" class="re-link hidden-text">link
                                 	<svg xmlns="http://www.w3.org/2000/svg">
 									    <path d="M8.59 16.34l4.58-4.59-4.58-4.59L10 5.75l6 6-6 6z"/>
 									    <path d="M0-.25h24v24H0z" fill="none"/>
 									</svg>
                     			</a>
-                            </li>
-
-                        </ul>
-                    </section>
-                </article>
+                                </li>
+                            </ul>
+                        </section>
+                    </article>
             </div>
         </div>
     </div>
@@ -161,12 +130,9 @@
             </div>
         </div>
     </footer>
-
-
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular.min.js"></script>
+    <script src="js/ui-bootstrap-tpls-1.3.2.min.js"></script>
     <script src="js/app.js"></script>
-<!--     <script src="js/mainController.js"></script> -->
 </body>
-
 
 </html>
