@@ -8,6 +8,11 @@ An angular exercise. This readme contains my notes and observations for setting 
 * Grunt
 
 # Process
-* Install Angular 
-`npm install npm install angular@1.5.5`
+* Install Angular by cloning the github repo
+`git clone https://github.com/angular/angular.js.git`
+
+* Install Node packages
+`npn install`
+
+
 
