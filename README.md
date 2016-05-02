@@ -1,0 +1,2 @@
+# angularx
+An angular exercise.
