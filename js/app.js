@@ -32,7 +32,6 @@
             date: new Date()
         }];
 
-
         $scope.add = function() {
             $scope.items.push({
                 name: $scope.titleInput,
@@ -48,6 +47,10 @@
 
         $scope.remove = function(index) {
             $scope.items.splice(index, 1);
+        };
+
+        $scope.tabbed = function() {
+            console.log("I'd rather be filtering");
         };
     });
 

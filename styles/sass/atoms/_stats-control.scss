@@ -28,6 +28,7 @@
 		width: 60%;
 		text-align: left;
 		font-size: 100%;
+
 		button{
 			position: relative;
 			font-size: 16px;
@@ -40,7 +41,9 @@
 			line-height: 50px;
 			vertical-align: middle;
 			color: $dirt;
+			font-weight: bold;
 			&:first-child{
+				color: $white;
 				background-image: radial-gradient($orange, darken($orange, 5%));
 			}
 			&:last-child{
@@ -63,6 +66,15 @@
 					fill: $black;
 				}
 			}
+			
+		}
+	}
+}
+
+@media screen and (min-width: 600px){
+	.buttons-group{
+		button{
+			padding-left: 21px !important; 
 		}
 	}
 }

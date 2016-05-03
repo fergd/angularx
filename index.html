@@ -62,19 +62,18 @@
 	                            </div>
 	                        </div>
 	                        <ul class="not-style-type category-tabs">
-	                            <li class="is-website" ng-model="resourceType">Web</li>
-	                            <li class="is-podcast" ng-model="resourceType">Podcast</li>
-	                            <li class="is-book" ng-model="resourceType">Books</li>
+	                            <li class="is-website" ng-model="resourceType" ng-click="tabbed()">Web</li>
+	                            <li class="is-podcast" ng-model="resourceType" ng-click="tabbed()">Podcast</li>
+	                            <li class="is-book" ng-model="resourceType" ng-click="tabbed()">Books</li>
 	                            <!-- Did not have a chance to address notes feature -->
-	                            <li class="is-notes" ng-model="resourceType">Notes</li>
+	                            <li class="is-notes" ng-model="resourceType" ng-click="tabbed()">Notes</li>
 	                        </ul>
 	                        <section class="resources-list">
 	                            <h2>Your Resources</h2>
 	                            <ul class="no-style-type" >
 	                                <li class="resource-item-wrapper item-has-animation" ng-repeat="item in items | orderBy:-'item.date'">
 	                                    <div class="re-category is-podcast" ng-click="remove($index)">
-	                                    <button ng-click="remove($index)">Remove</button>
-	                                        <span class="is-hidden">Book</span>
+											<i class="icon-add" ng-click="remove($index)"><svg xmlns="http://www.w3.org/2000/svg"><path d="M0 0h24v24H0z" fill="none"/><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm5 11h-4v4h-2v-4H7v-2h4V7h2v4h4v2z"/></svg></i>
 	                                    </div>
 	                                    <div class="re-middle">
 	                                        <div class="re-title is-ellipsis">
@@ -103,15 +102,8 @@
 	                <div class="footer-col footer-col-1">
 	                    <ul class="contact-list">
 	                        <li>Angular Exercise</li>
-	                        <li><a href="mailto:fergusdesign@gmail.com">fergusdesign@gmail.com</a></li>
+	                        <li><a href="mailto:christan.fergus@gmail.com">christan.fergus@gmail.com</a></li>
 	                    </ul>
-	                </div>
-	                <div class="footer-col footer-col-2">
-	                    <ul class="social-media-list">
-	                    </ul>
-	                </div>
-	                <div class="footer-col footer-col-3">
-	                    <p></p>
 	                </div>
 	            </div>
 	        </div>

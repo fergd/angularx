@@ -2,10 +2,18 @@
 	overflow: hidden;
 	height: 80px;
 	width: 100%;
-	min-width: 320px;
-	margin-bottom: 12px;
+	margin: 0 auto 12px auto;
 	border-radius: 3px;
-	box-shadow: 0px 17px 81px -13px rgba(0,0,0,0.42);
+	box-shadow: 0px 17px 81px -13px darken($bailys, 20%);
+	
+	@media screen and (min-width: 600px) {
+		width: 49%;
+		float: left;
+		margin: 0 0 12px 0;
+		&:nth-child(odd){
+			margin-right: 1%;
+		}
+	}
 
 	& > div{
 		float: left;
@@ -20,26 +28,33 @@
 		height: 100%;
 	}
 	.re-category{
-		width: 20%;
-		box-shadow: inset -7px 0px 39px -17px rgba(0,0,0,0.53);
+		width: 10%;
+		box-shadow: inset -7px 0px 39px -17px darken($cream, 20%);
+		position: relative;
+		background-color: $cream;
 
-		&.is-podcast{
-			background-color: $yellow;
+		i{
+			display: block;
+			width: 24px;
+			height: 24px;
+			position: absolute;
+			left: 50%;
+			top: 13px;
+			transform: translateX(-50%);
 		}
-		&.is-website{
-			background-color: $brick;
-		}
-		&.is-book{
-			background-color: $orange;
-		}
-		&.is-notes{
-			background-color: $bailys;
+		svg{
+			fill: $dirt;
+			width: 24px;
+			height: 24px;
+			transform: rotate(45deg);
 		}
 	}
 	.re-middle{
-		width: 70%;
-		background-color: $bailys;
+		width: 80%;
+		background-color: $cream;
 		padding: 0 7px;
+		color: $black;
+		font-weight: bold;
 
 		.re-title,
 		.re-info{

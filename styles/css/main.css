@@ -753,10 +753,20 @@ pre > code {
   overflow: hidden;
   height: 80px;
   width: 100%;
-  min-width: 320px;
-  margin-bottom: 12px;
+  margin: 0 auto 12px auto;
   border-radius: 3px;
-  box-shadow: 0px 17px 81px -13px rgba(0, 0, 0, 0.42);
+  box-shadow: 0px 17px 81px -13px #ab8c6c;
+}
+
+@media screen and (min-width: 600px) {
+  .resource-item-wrapper {
+    width: 49%;
+    float: left;
+    margin: 0 0 12px 0;
+  }
+  .resource-item-wrapper:nth-child(odd) {
+    margin-right: 1%;
+  }
 }
 
 .resource-item-wrapper > div {
@@ -774,30 +784,35 @@ pre > code {
 }
 
 .resource-item-wrapper .re-category {
-  width: 20%;
-  box-shadow: inset -7px 0px 39px -17px rgba(0, 0, 0, 0.53);
+  width: 10%;
+  box-shadow: inset -7px 0px 39px -17px #ceba94;
+  position: relative;
+  background-color: #EEE7DA;
 }
 
-.resource-item-wrapper .re-category.is-podcast {
-  background-color: #EFB175;
+.resource-item-wrapper .re-category i {
+  display: block;
+  width: 24px;
+  height: 24px;
+  position: absolute;
+  left: 50%;
+  top: 13px;
+  transform: translateX(-50%);
 }
 
-.resource-item-wrapper .re-category.is-website {
-  background-color: #926D66;
-}
-
-.resource-item-wrapper .re-category.is-book {
-  background-color: #CC9673;
-}
-
-.resource-item-wrapper .re-category.is-notes {
-  background-color: #D0BFAD;
+.resource-item-wrapper .re-category svg {
+  fill: #625E65;
+  width: 24px;
+  height: 24px;
+  transform: rotate(45deg);
 }
 
 .resource-item-wrapper .re-middle {
-  width: 70%;
-  background-color: #D0BFAD;
+  width: 80%;
+  background-color: #EEE7DA;
   padding: 0 7px;
+  color: #48454b;
+  font-weight: bold;
 }
 
 .resource-item-wrapper .re-middle .re-title,
@@ -930,9 +945,11 @@ pre > code {
   line-height: 50px;
   vertical-align: middle;
   color: #625E65;
+  font-weight: bold;
 }
 
 .stats-control .buttons-group button:first-child {
+  color: #f2f2f2;
   background-image: radial-gradient(#CC9673, #c58860);
 }
 
@@ -957,8 +974,14 @@ pre > code {
   fill: #48454b;
 }
 
+@media screen and (min-width: 600px) {
+  .buttons-group button {
+    padding-left: 21px !important;
+  }
+}
+
 .resources-list {
-  margin-top: 61px;
+  margin-top: 48px;
   width: 100%;
 }
 
@@ -966,7 +989,7 @@ pre > code {
   overflow: hidden;
   margin: 0 auto 40px auto;
   padding: 9px;
-  box-shadow: inset 0 0px 39px -17px rgba(0, 0, 0, 0.53);
+  background: radial-gradient(#f6f2eb, rgba(238, 231, 218, 0.1));
 }
 
 .add-form legend {
@@ -987,7 +1010,7 @@ pre > code {
   border: none;
   padding: 0;
   margin: 0 0 21px 0;
-  max-width: 540px;
+  max-width: 480px;
   margin: 0 auto;
 }
 
