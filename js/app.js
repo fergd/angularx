@@ -2,7 +2,7 @@
     var app = angular.module('resourcesSite', []);
 
     app.controller('ResourceController', function($scope) {
-        // TODO: hook up filtering
+        // TODO: continue to hook up filtering
         $scope.resourceType = [{
             id: 1,
             name: 'Book'
@@ -18,17 +18,17 @@
             name: 'JavaScript for Web Developers',
             // will be replaced by updated filter array
             type: 'Book',
-            url: 'http://christanfergus.com',
+            url: 'http://www.amazon.com/Professional-JavaScript-Developers-Nicholas-Zakas/dp/1118026691',
             date: new Date()
         }, {
             name: 'Muz.li',
             type: 'Website',
-            url: 'http://christanfergus.com',
+            url: 'http://muz.li',
             date: new Date()
         }, {
             name: 'The Web Ahead',
             type: 'Podcast',
-            url: 'http://christanfergus.com',
+            url: 'http://thewebahead.net',
             date: new Date()
         }];
 

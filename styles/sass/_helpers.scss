@@ -1,0 +1,60 @@
+// remove all list styling
+.no-style-type{
+	li{
+		list-style-type: none;
+	}
+}
+
+// hide from screen only
+.is-hidden{
+	position:absolute;
+	left:-10000px;
+	top:auto;
+	width:1px;
+	height:1px;
+	overflow:hidden;
+}
+
+// hidden text
+.hidden-text{
+	text-indent: 100%;
+	overflow: hidden;
+	white-space: nowrap;
+}
+
+// podcast color extends
+.is-podast{
+	background-color: $yellow;
+}
+.is-website{
+	background-color: $brick;
+}
+.is-book{
+	background-color: $orange;
+}
+.is-notes{
+	background-color: $light-dirt;
+}
+
+// ellipsis
+.is-ellipsis{
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
+
+// button
+@mixin button($button-color: $orange, $text-color: $dirt){
+	padding: 12px 21px;
+	display: inline-block;
+	font-size: 16px;
+	position: relative;
+	font-family: inherit;
+	text-align: center;
+	border: none;
+	border-radius: 3px; 
+	outline: none;
+	vertical-align: middle;
+	color: $text-color;
+	background-image: radial-gradient($button-color, darken($button-color, 5%));
+}

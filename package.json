@@ -1,8 +1,17 @@
 {
   "name": "angularx",
   "version": "0.0.1",
+  "type": "git",
+  "license": "MIT",
+  "description": "Angular exercise for Gloo",
+  "repository": "https://github.com/fergd/angularx.git",
+  "author": "Christan Fergus <christan.fergus@gmail.com>",
+
   "devDependencies": {
-    "grunt-contrib-watch": "~0.6.1",
-    "grunt-sass": "^0.17.0"
+  	"grunt": 				         "^1.0.1",
+    "grunt-contrib-watch": 	 "^1.0.0",
+    "grunt-sass": 			     "^1.0.0",
+    "grunt-contrib-connect": "^1.0.2"
+    
   }
 }

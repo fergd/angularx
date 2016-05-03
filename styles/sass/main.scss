@@ -1,0 +1,52 @@
+@charset "utf-8";
+* {
+	box-sizing: border-box;
+}
+// Our variables
+$base-font-family:'Raleway', "Helvetica Neue", Helvetica, Arial, sans-serif;
+$simple-font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+$base-font-size:   16px;
+$base-font-weight: 400;
+$small-font-size:  $base-font-size * 0.875;
+$base-line-height: 1.5;
+
+$spacing-unit:     30px;
+
+// Width of the content area
+$content-width:    800px;
+
+$on-palm:          600px;
+$on-laptop:        800px;
+
+@mixin media-query($device) {
+    @media screen and (max-width: $device) {
+        @content;
+    }
+}
+
+// Import partials from `sass_dir` (defaults to `_sass`)
+@import
+ 	"variables",
+    "resets",
+    "layout",
+    "helpers",
+    "syntax-highlighting",
+    "animations"
+;
+
+// Atoms
+@import
+    "atoms/resource-item",
+    "atoms/category-tabs",
+    "atoms/stats-control"
+;
+
+// Molecules
+@import 
+	"molecules/resources-list"
+;
+
+// Organism
+@import 
+	"organisms/forms"
+;

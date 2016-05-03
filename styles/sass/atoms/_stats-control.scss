@@ -1,0 +1,68 @@
+.stats-control{
+	width: 100%;
+	overflow: hidden;
+	height: 100px;
+	
+	.status, 
+	.buttons-group{
+		float: left;
+	}
+	.status{
+		width: 40%;
+		height: 100%;
+		padding: 0 12px 12px 12px;
+		
+		h2{
+			height: 100%;
+			font-size: 16px;
+			line-height: 1;
+			text-align: center;
+			span{
+				font-size: 68px;
+				line-height: 1;
+			}
+		}	
+	}
+
+	.buttons-group{
+		width: 60%;
+		text-align: left;
+		font-size: 100%;
+		button{
+			position: relative;
+			font-size: 16px;
+			font-family: inherit;
+			text-align: left;
+			border: none;
+			outline: none;
+			width: 100%;
+			height: 50px;
+			line-height: 50px;
+			vertical-align: middle;
+			color: $dirt;
+			&:first-child{
+				background-image: radial-gradient($orange, darken($orange, 5%));
+			}
+			&:last-child{
+				background-image: radial-gradient($yellow, darken($yellow, 5%));
+			}
+
+			i{
+				display: block;
+				position: absolute;
+				height: 24px;
+				width: 24px;
+				right: 10px;
+				top: 50%;
+				transform: translateY(-50%);
+
+				svg{
+					display: block;
+					width: 100%;
+					height: 100%;
+					fill: $black;
+				}
+			}
+		}
+	}
+}

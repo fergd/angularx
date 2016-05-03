@@ -1,6 +1,5 @@
 module.exports = function (grunt) {
-  grunt.loadNpmTasks('grunt-cssbeautifier');
-  grunt.loadNpmTasks('grunt-strip-css-comments');
+
   grunt.initConfig({
     pkg: grunt.file.readJSON("package.json"),
 
@@ -11,35 +10,9 @@ module.exports = function (grunt) {
       prodCSS: 'styles/deploy/styles',
     }, // paths
 
-    uglify: {
-      global: {
-        files: {
-          "js/site.min.js": ['js/*.js']
-        }
-      }
-    }, // uglify
-
-    cssbeautifier: {
-      global: {
-        files: {
-          src: ['styles/css/*.css']
-        },
-        options: {
-          indent: '  ',
-          openbrace: 'end-of-line',
-          autosemicolon: false
-        }
-      }
-    }, // cssbeautifier
-
-    stripCssComments: {
-      global: {
-        files: [{
-          expand: true,
-          src: ['styles/css/*.css']
-        }]
-      }
-    }, // stripCssComments
+    connect: {
+      uses_defaults: {}
+    },
 
     sass: {
       global: {
@@ -75,11 +48,11 @@ module.exports = function (grunt) {
         tasks: ["sass"]
       },
     } // watch
-
   });
-  require("load-grunt-tasks")(grunt);
+
+  grunt.loadNpmTasks('grunt-contrib-watch');
+  grunt.loadNpmTasks('grunt-sass');
+  grunt.loadNpmTasks('grunt-contrib-connect');
   // grunt command
-  grunt.registerTask("default", ["sass", "watch"]);
-  // grunt format command (run before code commit)
-  grunt.registerTask("format", ["stripCssComments", "cssbeautifier"]);
+  grunt.registerTask("default", ["connect", "sass", "watch"]);
 };
