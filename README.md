@@ -38,7 +38,7 @@ I kept the UI fairly simple. I decided to let the theme do most of the talking. 
 The design is responsive. I generally take a mobile-first approach and this project was no exception. The result is a design that is fluid. The primary area I showcased a change based upon screen size is with the resource cards. Above 600px they begin to float left.  
 
 ## Angular
-Working with Angular was definitely the biggest challenge of this project, but man-alive do I really like Angular! My target was 8 hours, so having never worked with the library before, I knew I was in for an uphill battle. There are a myriad of things I still would like to do and I may play with this project a little further. 
+Working with Angular was definitely the biggest challenge of this project, but man-alive do I really like Angular! My target was 8 hours, so having never worked with the framework before, I knew I was in for an uphill battle. There are a myriad of things I still would like to do and I may play with this project a little further. 
 
 It's obvious, but the big requirement I did not do was adding the ability to edit. I did manage to get the adding and removing down, however, and am pleased with that. There are some other sprinkles of Angular functionality throughout, such as the show/hide directives and the resource counter.
 
