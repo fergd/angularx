@@ -40,8 +40,8 @@ module.exports = function (grunt) {
         files: ['**/*.html', 'js/**/*.{js,json}', 'styles/css/*.css', 'images/**/*.{png,jpg,jpeg,gif,webp,svg}']
       },
       js: {
-        files: ['js/*.js'],
-        tasks: ["uglify"]
+        files: ['js/*.js']
+        // tasks: ["uglify"]
       },
       css: {
         files: ["styles/sass/**/*.scss"],
