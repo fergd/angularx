@@ -1045,4 +1045,10 @@ pre > code {
   float: right;
 }
 
+.add-form select {
+  border: 1px solid #625E65;
+  border-radius: 0;
+  background: #EEE7DA;
+}
+
 /*# sourceMappingURL=main.css.map */

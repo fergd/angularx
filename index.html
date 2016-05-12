@@ -1,115 +1,99 @@
 <!DOCTYPE html>
-<html ng-app="resourcesSite">
+<html ng-app="keeper">
 	<head>
-	    <meta charset="utf-8">
-	    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-	    <meta name="viewport" content="width=device-width, initial-scale=1">
-	    <title>Angular Experiment</title>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<title>Angular Experiment</title>
 		<link rel="stylesheet" href="styles/css/main.css">
-	    <link href='https://fonts.googleapis.com/css?family=Raleway:300' rel='stylesheet' type='text/css'>
+		<link href='https://fonts.googleapis.com/css?family=Raleway:300' rel='stylesheet' type='text/css'>
 	</head>
-	<body ng-app="resourcesSite">
-	    <header class="site-header">
-	        <div class="wrapper">
-	            <a class="site-title" href="/">Angular Exercise</a>
-	            <nav class="site-nav">
-	                <a href="#" class="menu-icon">
-	                    <svg viewBox="0 0 18 15">
-	                        <path fill="#424242" d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.031C17.335,0,18,0.665,18,1.484L18,1.484z" />
-	                        <path fill="#424242" d="M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0c0-0.82,0.665-1.484,1.484-1.484 h15.031C17.335,6.031,18,6.696,18,7.516L18,7.516z" />
-	                        <path fill="#424242" d="M18,13.516C18,14.335,17.335,15,16.516,15H1.484C0.665,15,0,14.335,0,13.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.031C17.335,12.031,18,12.696,18,13.516L18,13.516z" />
-	                    </svg>
-	                </a>
-	                <div class="trigger">
-	                </div>
-	            </nav>
-	        </div>
-	    </header>
-	    <div class="page-content" ng-controller="ResourceController">
-	        <div class="wrapper">
-	            <div role="content">
-	                <form ng-submit="addResource()" ng-show="showForm" class="add-form">
-	                    <fieldset>
-	                        <legend>Add A New Resource</legend>
-	                        <label for="title" class="is-hidden">Resource title</label>
-	                        <input ng-model="titleInput" type="text" id="title" placeholder="Resource title">
-	                        <!-- TODO: make a select box to preserve categories -->
-	                        <label for="type" class="is-hidden">Resource type</label>
-	                        <input ng-model="typeInput" type="text" id="type" placeholder="Resource type">
-	                        <label for="source" class="is-hidden">URL</label>
-	                        <input ng-model="urlInput" type="text" id="source" placeholder="URL">
-	                        <div>
-	                        	<button type="submit" ng-click="add(); showForm=false">Add</button>
-	                    	</div>
-	                    </fieldset>
-					</form>
+	<body>
+		<div class="page-content" ng-controller="ResourceController as keeper">
+			<div class="wrapper">
+				<div role="content" >
+					<div >
+						<form ng-submit="addCtrl.addResource(singleResource)" class="add-form" ng-controller="AddSourceController as addCtrl"><!--ng-show="showForm" -->
+		                    <fieldset>
+		                        <legend>Add A New Resource</legend>
+		                        <label for="title" class="is-hidden">Resource title</label>
+		                        <input ng-model="addCtrl.source.name" type="text" id="title" placeholder="Resource title">
+		                        <label for="type" class="is-hidden">Resource type</label>
+		                        <select ng-model="addCtrl.source.type" id="type" name="Resource Type">
+		                        	<option value="Resource Type" disabled selected >Resource Type</option>
+									<option value="book">Book</option>
+									<option value="website">Website</option>
+		                        	<option value="podcast">Podcast</option>
+		                        </select>
+		                        <label for="source" class="is-hidden">URL</label>
+		                        <input ng-model="addCtrl.source.url" type="text" id="source" placeholder="URL">
+		                        <div>
+		                        	<button type="submit">Add</button><!--ng-click="add(); showForm=false"-->
+		                    	</div>
+		                    </fieldset>
+						</form>
 
-	                    <article>
-	                        <header class="is-hidden">
-	                            <h1>Resources Status &amp; Tools</h1>
-	                        </header>
-	                        <div class="stats-control">
-	                            <div class="status">
-	                                <h2><span>{{ items.length }}</span><br>resources</h2>
-	                            </div>
-	                            <div class="buttons-group">
-	                                <button type="submit" ng-click="showForm=true">Add New
-	                                    <i class="icon-add"><svg xmlns="http://www.w3.org/2000/svg"><path d="M0 0h24v24H0z" fill="none"/><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm5 11h-4v4h-2v-4H7v-2h4V7h2v4h4v2z"/></svg></i>
-	                                </button>
-	                                <button>Manage Resources
-	                                    <i class="icon-edit"><svg xmlns="http://www.w3.org/2000/svg"><path d="M3 17.25V21h3.75L17.81 9.94l-3.75-3.75L3 17.25zM20.71 7.04c.39-.39.39-1.02 0-1.41l-2.34-2.34c-.39-.39-1.02-.39-1.41 0l-1.83 1.83 3.75 3.75 1.83-1.83z"/><path d="M0 0h24v24H0z" fill="none"/></svg></i>
-	                                </button>
-	                            </div>
-	                        </div>
-	                        <ul class="not-style-type category-tabs">
-	                            <li class="is-website" ng-model="resourceType" ng-click="tabbed()">Web</li>
-	                            <li class="is-podcast" ng-model="resourceType" ng-click="tabbed()">Podcast</li>
-	                            <li class="is-book" ng-model="resourceType" ng-click="tabbed()">Books</li>
-	                            <!-- Did not have a chance to address notes feature -->
-	                            <li class="is-notes" ng-model="resourceType" ng-click="tabbed()">Notes</li>
-	                        </ul>
-	                        <section class="resources-list">
-	                            <h2>Your Resources</h2>
-	                            <ul class="no-style-type" >
-	                                <li class="resource-item-wrapper item-has-animation" ng-repeat="item in items | orderBy:-'item.date'">
-	                                    <div class="re-category is-podcast" ng-click="remove($index)">
-											<i class="icon-add" ng-click="remove($index)"><svg xmlns="http://www.w3.org/2000/svg"><path d="M0 0h24v24H0z" fill="none"/><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm5 11h-4v4h-2v-4H7v-2h4V7h2v4h4v2z"/></svg></i>
-	                                    </div>
-	                                    <div class="re-middle">
-	                                        <div class="re-title is-ellipsis">
-	                                            <span>{{item.name}}</span>
-	                                        </div>
-	                                        <div class="re-info"><span>A {{item.type}}</span> <span>added {{item.date | date:'shortDate'}}</span>
-	                                        </div>
-	                                    </div>
-	                                    <a ng-href="{{item.url}}" target="_blank" rel="external" class="re-link hidden-text">link
-	                                	<svg xmlns="http://www.w3.org/2000/svg">
-										    <path d="M8.59 16.34l4.58-4.59-4.58-4.59L10 5.75l6 6-6 6z"/>
-										    <path d="M0-.25h24v24H0z" fill="none"/>
-										</svg>
-	                    			</a>
-	                                </li>
-	                            </ul>
-	                        </section>
-	                    </article>
-	            </div>
-	        </div>
-	    </div>
-	    <footer class="site-footer">
-	        <div class="wrapper">
-	            <h2 class="footer-heading">Angular Exercise</h2>
-	            <div class="footer-col-wrapper">
-	                <div class="footer-col footer-col-1">
-	                    <ul class="contact-list">
-	                        <li>Angular Exercise</li>
-	                        <li><a href="mailto:christan.fergus@gmail.com">christan.fergus@gmail.com</a></li>
-	                    </ul>
-	                </div>
-	            </div>
-	        </div>
-	    </footer>
-	    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular.min.js"></script>
-	    <script src="js/ui-bootstrap-tpls-1.3.2.min.js"></script>
-	    <script src="js/app.js"></script>
+						<div class="resource-item-wrapper item-has-animation">
+	                		<div class="re-category">
+								<i class="icon-add"><svg xmlns="http://www.w3.org/2000/svg"><path d="M0 0h24v24H0z" fill="none"/><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm5 11h-4v4h-2v-4H7v-2h4V7h2v4h4v2z"/></svg></i>
+	                		</div>
+	                		<div class="re-middle">
+	                   			<div class="re-title is-ellipsis">
+	                        		<span>{{addCtrl.source.name}}</span>
+	                    		</div>
+	                    		<div class="re-info"><span>A {{addCtrl.source.type}}</span></span>
+	                    		</div>
+	               		 	</div>
+	                		<a href target="_blank" rel="external" class="re-link hidden-text">link
+		                    	<svg xmlns="http://www.w3.org/2000/svg">
+								    <path d="M8.59 16.34l4.58-4.59-4.58-4.59L10 5.75l6 6-6 6z"/>
+								    <path d="M0-.25h24v24H0z" fill="none"/>
+								</svg>
+							</a>
+	            		</div>
+					</div>
+
+					<section class="resources-list" >
+						<h2>Your Resources</h2>
+						<ul class="no-style-type">
+							<li class="resource-item-wrapper item-has-animation" ng-repeat="singleResource in keeper.resources">
+                        		<div class="re-category is-podcast">
+									<i class="icon-add"><svg xmlns="http://www.w3.org/2000/svg"><path d="M0 0h24v24H0z" fill="none"/><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm5 11h-4v4h-2v-4H7v-2h4V7h2v4h4v2z"/></svg></i>
+                        		</div>
+                        		<div class="re-middle">
+                           			<div class="re-title is-ellipsis">
+                                		<span>{{singleResource.name}}</span>
+                            		</div>
+                            		<div class="re-info"><span>A {{singleResource.type}}</span> <span>added {{singleResource.date | date:'shortDate'}}</span>
+                            		</div>
+                       		 	</div>
+                        		<a ng-href="{{singleResource.url}}" target="_blank" rel="external" class="re-link hidden-text">link
+			                    	<svg xmlns="http://www.w3.org/2000/svg">
+									    <path d="M8.59 16.34l4.58-4.59-4.58-4.59L10 5.75l6 6-6 6z"/>
+									    <path d="M0-.25h24v24H0z" fill="none"/>
+									</svg>
+        						</a>
+                    		</li>
+						</ul>
+					</section>
+				</div>
+			</div>
+			
+			
+			
+
+
+
+
+
+
+
+
+
+
+		</div>
+		<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular.min.js"></script>
+		<script src="js/ui-bootstrap-tpls-1.3.2.min.js"></script>
+		<script src="js/app.js"></script>
 	</body>
 </html>
